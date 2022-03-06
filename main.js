@@ -1,5 +1,5 @@
 
-const words = ["Rock", "Paper", "Scissors"];
+const words = ["rock", "paper", "scissors"]; // <----This function works ****
 
 function computerPlay() {
    return words[Math.floor(Math.random() * words.length)]; /* 1. words is an array so [] go
@@ -10,8 +10,8 @@ function computerPlay() {
 
 
 function playRound(playerSelection, computerSelection) {
-    let playerSelection = prompt "Type Rock, Paper or Scissors";
-    input = playerSelection.toLowerCase(); // Makes any typed selection non-case sensitive
+    let input = prompt ("Type Rock, Paper or Scissors");
+    playerSelection = input.toLowerCase(); // Makes any typed selection non-case sensitive
 
     if(playerSelection === computerSelection) {
         return "Tie!";
@@ -24,7 +24,7 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+const playerSelection = "rock";           // <-----Have to call this three line block to test App.
+const computerSelection = computerPlay();
+console.log(playRound(playerSelection, computerSelection));
 
-    const playerSelection = "Rock";
-    const computerSelection = computerPlay();
-    console.log(playRound(playerSelection, computerSelection));
