@@ -1,4 +1,9 @@
 
+
+let playerWin = 0;
+let computerWin = 0;
+const computerSelection = computerPlay(); 
+
 const words = ["rock", "paper", "scissors"]; 
 
 function computerPlay() {
@@ -8,31 +13,30 @@ function computerPlay() {
    to a whole integer! */
 }
 
-const computerSelection = computerPlay(); 
+
+
+function playRound(playerSelection, computerSelection) {
+    let input = prompt ("Type Rock, Paper or Scissors");
+    playerSelection = input.toLowerCase(); // Makes any typed selection non-case sensitive
+        
+    if(playerSelection === computerSelection) {
+        return "Tie!";
+    } else if((playerSelection === "rock" && computerSelection === "scissors") || 
+    (playerSelection === "scissors" && computerSelection === "paper") ||
+    (playerSelection === "paper" && computerSelection === "rock")) {
+        playerWin++;
+       return `${playerSelection} beats ${computerSelection}, you win!`;
+    } else {
+        computerWin++;
+        return `${computerSelection} beats ${playerSelection}, you lose!`;
+        
+    }
+}
 
 function game() { 
-    let input = prompt ("Type Rock, Paper or Scissors");
-            playerSelection = input.toLowerCase(); // Makes any typed selection non-case sensitive
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i <= 5; i++) {
+    playRound();
     let gameRounds = i;
-    let playerWin = 0;
-    let computerWin = 0;
-    
-        function playRound(playerSelection, computerSelection) {
-        
-            if(playerSelection === computerSelection) {
-                return "Tie!";
-            } else if((playerSelection === "rock" && computerSelection === "scissors") || 
-            (playerSelection === "scissors" && computerSelection === "paper") ||
-            (playerSelection === "paper" && computerSelection === "rock")) {
-               return `${playerSelection} beats ${computerSelection}, you win!`;
-               playerWin++;
-            } else {
-                return `${computerSelection} beats ${playerSelection}, you lose!`;
-                computerWin++;
-            }
-        }
-
     }
     
     if(playerWin === 5) {
@@ -41,3 +45,6 @@ function game() {
         console.log(`You lost the game! Computer ${computerWin} points, beats your ${playerWin} points!`)
     }
 }
+
+
+game();
