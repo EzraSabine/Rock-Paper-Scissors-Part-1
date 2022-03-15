@@ -13,12 +13,17 @@ function computerPlay() {
    to a whole integer! */
 }
 
-let computerSelection = computerPlay(); // <------computerSelection keeps listing as 'undefinded'....wtf...
+// ----------------------------------------------------------------------------
+// let computerSelection = computerPlay(); // <------computerSelection keeps listing as 'undefined'....wtf...
+//-----------------------------------------------------------------------------
 
-function playRound(playerSelection, computerSelection) {
+
+function playRound() {
+    console.log(`Player's score is ${playerWin} and Computer's score is ${computerWin}`);
     let input = prompt ("Type Rock, Paper or Scissors");
-    playerSelection = input.toLowerCase(); // Makes any typed selection non-case sensitive
-    
+    let playerSelection = input.toLowerCase(); // Makes any typed selection non-case sensitive
+    let computerSelection = computerPlay();
+
     if(playerSelection === computerSelection) {
         console.log("Tie!");
     } else if((playerSelection === "rock" && computerSelection === "scissors") || 
@@ -34,15 +39,15 @@ function playRound(playerSelection, computerSelection) {
 
 
 function game() { 
-    for (let i = 0; i < 5; i++) {
-    playRound();
-    if(playerWin === 5) {
-        console.log(`You won the game with ${playerWin} points!`);
-    } else if(computerWin === 5) {
-        console.log(`You lost the game! Computer: ${computerWin} points, beats your ${playerWin} points!`);
+    while (playerWin < 5 && computerWin < 5) {
+        playRound();
+        if(playerWin === 5) {
+            console.log(`You won the game with ${playerWin} points!`);
+        } else if(computerWin === 5) {
+            console.log(`You lost the game! Computer: ${computerWin} points, beats your ${playerWin} points!`);
+        }
     }
 }
-}
 
 
-console.log(game());
+game();
