@@ -38,6 +38,7 @@ function playRound() {
 }
 
 
+/*----------------"rps-ui branch" removal
 function game() { 
     while (playerWin < 5 && computerWin < 5) {
         playRound();// <----------------------------playRound() function needs to be called for every loop
@@ -51,3 +52,5 @@ function game() {
 
 
 game();
+*/
+
