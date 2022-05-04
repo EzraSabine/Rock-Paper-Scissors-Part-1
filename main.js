@@ -40,7 +40,7 @@ function playRound() {
 
 function game() { 
     while (playerWin < 5 && computerWin < 5) {
-        playRound();
+        playRound();// <----------------------------playRound() function needs to be called for every loop
         if(playerWin === 5) {
             console.log(`You won the game with ${playerWin} points!`);
         } else if(computerWin === 5) {
