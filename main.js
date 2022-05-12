@@ -3,6 +3,14 @@
 let playerWin = 0;
 let computerWin = 0;
 
+const optionBtn = document.querySelectorAll('.btns'); //<---------selects all buttons in the div containing the buttons.
+
+optionBtn.forEach(button => {button.addEventListener('click',getPlayerChoice)});
+
+function getPlayerChoice(e) {
+    let playerSelection = (e.target.value);
+    playRound(playerSelection, computerPlay());
+}
 
 
 const words = ["rock", "paper", "scissors"]; 
@@ -13,16 +21,15 @@ function computerPlay() {
    to a whole integer! */
 }
 
-// ----------------------------------------------------------------------------
-// let computerSelection = computerPlay(); // <------computerSelection keeps listing as 'undefined'....wtf...
-//-----------------------------------------------------------------------------
 
 
-function playRound() {
+
+function playRound(playerSelection, computerSelection) {
     console.log(`Player's score is ${playerWin} and Computer's score is ${computerWin}`);
-    let input = prompt ("Type Rock, Paper or Scissors");
-    let playerSelection = input.toLowerCase(); // Makes any typed selection non-case sensitive
-    let computerSelection = computerPlay();
+    //let input = prompt ("Type Rock, Paper or Scissors"); <----- input prompt for console play!
+    //let playerSelection = btnRock.value;  <----grabs the value/inner html of what is inside the button.
+    //let playerSelection = input.toLowerCase(); <------- Makes any typed selection non-case sensitive
+    //let computerSelection = computerPlay();
 
     if(playerSelection === computerSelection) {
         console.log("Tie!");
@@ -37,6 +44,20 @@ function playRound() {
     }
 }
 
+
+
+
+
+
+/*const btnRock = document.getElementById('btn1');
+const btnPaper = document.getElementById('btn2');
+const btnScissors = document.getElementById('btn3'); 
+
+btnRock.addEventListener('click', playRound);
+btnPaper.addEventListener('click', playRound);
+btnScissors.addEventListener('click', playRound); <------ Might be able to combine this into one event listener with a .forEach method/loop */ 
+
+//---------------------------------------------------------------------------------------------------------------
 
 /*----------------"rps-ui branch" removal
 function game() { 
