@@ -26,11 +26,24 @@ function computerPlay() {
    to a whole integer! */
 }
 
+const containerOne = document.getElementById('container1');
+const whoBeatsWho = document.createElement('p');
+whoBeatsWho.classList.add('who-beats-who');
 
+
+const containerTwo = document.getElementById('container2');
+const tally = document.createElement('p');
+tally.classList.add('tally');
+
+
+
+const winner = document.createElement('p');
+winner.classList.add('winner');
 
 
 function playRound(playerSelection, computerSelection) {
-    
+    tally.textContent = `Player's score is ${playerWin} and Computer's score is ${computerWin}`
+    containerTwo.appendChild(tally);    
     
     //console.log(`Player's score is ${playerWin} and Computer's score is ${computerWin}`);
     //let input = prompt ("Type Rock, Paper or Scissors"); <----- input prompt for console play!
@@ -38,29 +51,19 @@ function playRound(playerSelection, computerSelection) {
     //let playerSelection = input.toLowerCase(); <------- Makes any typed selection non-case sensitive
     //let computerSelection = computerPlay();
 
-const results = document.getElementById('results');
-
-const tally = document.createElement('p');
-tally.classList.add('tally');
-tally.textContent = `Player's score is ${playerWin} and Computer's score is ${computerWin}`
-results.appendChild(tally);
-
-const winner = document.createElement('p');
-winner.classList.add('winner');
-
-
-
-
     if(playerSelection === computerSelection) {
-        console.log("Tie!");
+        whoBeatsWho.textContent = "Tie!";
+        containerOne.appendChild(whoBeatsWho);
     } else if((playerSelection === "rock" && computerSelection === "scissors") || 
     (playerSelection === "scissors" && computerSelection === "paper") ||
     (playerSelection === "paper" && computerSelection === "rock")) {
         playerWin++;
-       console.log(`${playerSelection} beats ${computerSelection}, you win!`);
+       whoBeatsWho.textContent = (`${playerSelection} beats ${computerSelection}, you win!`);
+       containerOne.appendChild(whoBeatsWho);
     } else {
         computerWin++;
-        console.log(`${computerSelection} beats ${playerSelection}, you lose!`);   
+        whoBeatsWho.textContent = (`${computerSelection} beats ${playerSelection}, you lose!`);
+        containerOne.appendChild(whoBeatsWho);   
     }
 }
 
