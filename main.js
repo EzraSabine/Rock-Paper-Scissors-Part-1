@@ -1,3 +1,4 @@
+
 /* The Odin Project - Rock Paper Scissors Part 1 and Part 2 */
 
 
@@ -8,24 +9,6 @@ comments for myself to remember how some syntax works. */
 let playerWin = 0;
 let computerWin = 0;
 
-const optionBtn = document.querySelectorAll('.btns'); //<---------selects all buttons in the div containing the buttons.
-
-optionBtn.forEach(button => {button.addEventListener('click',getPlayerChoice)});
-
-function getPlayerChoice(e) {
-    let playerSelection = (e.target.value);
-    playRound(playerSelection, computerPlay());
-}
-
-
-const words = ["rock", "paper", "scissors"]; 
-function computerPlay() {
-    return words[Math.floor(Math.random() * words.length)]; /* 1. words is an array so [] go
-   after words. 2.Math.random = random number between 0 and 1, Math.floor rounds down to whole
-   number to create a whole integer. 3.Math.random() * words.length goes first THEN rounds down 
-   to a whole integer! */
-}
-
 const containerOne = document.getElementById('container1');
 const whoBeatsWho = document.createElement('p');
 whoBeatsWho.classList.add('who-beats-who');
@@ -35,10 +18,27 @@ const containerTwo = document.getElementById('container2');
 const tally = document.createElement('p');
 tally.classList.add('tally');
 
+const finalist = document.getElementById('finalist');
+const displayFinalist = document.createElement('p');
+displayFinalist.classList.add("final-winner");
 
 
-const winner = document.createElement('p');
-winner.classList.add('winner');
+
+const optionBtn = document.querySelectorAll('.btns'); //<---------selects all buttons in the div containing the buttons.
+optionBtn.forEach(button => {button.addEventListener('click',getPlayerChoice)});
+
+function getPlayerChoice(e) {
+    let playerSelection = (e.target.value);
+    playRound(playerSelection, computerPlay());
+}
+
+const words = ["rock", "paper", "scissors"]; 
+function computerPlay() {
+    return words[Math.floor(Math.random() * words.length)]; /* 1. words is an array so [] go
+   after words. 2.Math.random = random number between 0 and 1, Math.floor rounds down to whole
+   number to create a whole integer. 3.Math.random() * words.length goes first THEN rounds down 
+   to a whole integer! */
+}
 
 
 function playRound(playerSelection, computerSelection) {
@@ -65,10 +65,23 @@ function playRound(playerSelection, computerSelection) {
         whoBeatsWho.textContent = (`${computerSelection} beats ${playerSelection}, you lose!`);
         containerOne.appendChild(whoBeatsWho);   
     }
+
+    while (playerWin < 5 && computerWin < 5) {
+        playRound(playerSelection, computerPlay());// <----------------------------playRound() function needs to be called for every loop
+        if(playerWin === 5) {
+            displayFinalist.textContent = `You won the game with ${playerWin} points!`;
+            finalist.appendChild(displayFinalist);
+        } else if(computerWin === 5) {
+            displayFinalist.textContent = `You lost the game! Computer: ${computerWin} points, beats your ${playerWin} points!`;
+            finalist.appendChild(displayFinalist);
+        }
+    }    
 }
 
-/* NEED TO ADD THIS INTO FUNCTIONALITY-------
-function game() { 
+
+
+
+/*function game() { 
     while (playerWin < 5 && computerWin < 5) {
         playRound();// <----------------------------playRound() function needs to be called for every loop
         if(playerWin === 5) {
@@ -79,7 +92,11 @@ function game() {
     }
 }
 
-
-game();
 */
 
+/*function getPlayerChoice(e) {     <<<<<<-----This is what worked before, above. 
+    let playerSelection = (e.target.value);
+    playRound(playerSelection, computerPlay()); <<<<<<-----This is important to put back!
+}
+
+*/
