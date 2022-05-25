@@ -32,6 +32,8 @@ function getPlayerChoice(e) {
     playRound(playerSelection, computerPlay());
 }
 
+
+
 const words = ["rock", "paper", "scissors"]; 
 function computerPlay() {
     return words[Math.floor(Math.random() * words.length)]; /* 1. words is an array so [] go
@@ -45,58 +47,30 @@ function playRound(playerSelection, computerSelection) {
     tally.textContent = `Player's score is ${playerWin} and Computer's score is ${computerWin}`
     containerTwo.appendChild(tally);    
     
-    //console.log(`Player's score is ${playerWin} and Computer's score is ${computerWin}`);
-    //let input = prompt ("Type Rock, Paper or Scissors"); <----- input prompt for console play!
-    //let playerSelection = btnRock.value;  <----grabs the value/inner html of what is inside the button.
-    //let playerSelection = input.toLowerCase(); <------- Makes any typed selection non-case sensitive
-    //let computerSelection = computerPlay();
 
-    if(playerSelection === computerSelection) {
-        whoBeatsWho.textContent = "Tie!";
-        containerOne.appendChild(whoBeatsWho);
-    } else if((playerSelection === "rock" && computerSelection === "scissors") || 
-    (playerSelection === "scissors" && computerSelection === "paper") ||
-    (playerSelection === "paper" && computerSelection === "rock")) {
-        playerWin++;
-       whoBeatsWho.textContent = (`${playerSelection} beats ${computerSelection}, you win!`);
-       containerOne.appendChild(whoBeatsWho);
-    } else {
-        computerWin++;
-        whoBeatsWho.textContent = (`${computerSelection} beats ${playerSelection}, you lose!`);
-        containerOne.appendChild(whoBeatsWho);   
-    }
+        if(playerSelection === computerSelection) {
+            whoBeatsWho.textContent = "Tie!";
+            containerOne.appendChild(whoBeatsWho);
+        } else if((playerSelection === "rock" && computerSelection === "scissors") || 
+        (playerSelection === "scissors" && computerSelection === "paper") ||
+        (playerSelection === "paper" && computerSelection === "rock")) {
+            playerWin++;
+           whoBeatsWho.textContent = (`${playerSelection} beats ${computerSelection}, you win!`);
+           containerOne.appendChild(whoBeatsWho);
+        } else {
+            computerWin++;
+            whoBeatsWho.textContent = (`${computerSelection} beats ${playerSelection}, you lose!`);
+            containerOne.appendChild(whoBeatsWho);   
+        }
 
-    while (playerWin < 5 && computerWin < 5) {
-        playRound(playerSelection, computerPlay());// <----------------------------playRound() function needs to be called for every loop
         if(playerWin === 5) {
             displayFinalist.textContent = `You won the game with ${playerWin} points!`;
             finalist.appendChild(displayFinalist);
+            optionBtn.forEach(button => {button.removeEventListener('click',getPlayerChoice)});
+
         } else if(computerWin === 5) {
             displayFinalist.textContent = `You lost the game! Computer: ${computerWin} points, beats your ${playerWin} points!`;
             finalist.appendChild(displayFinalist);
+            optionBtn.forEach(button => {button.removeEventListener('click',getPlayerChoice)});
         }
-    }    
-}
-
-
-
-
-/*function game() { 
-    while (playerWin < 5 && computerWin < 5) {
-        playRound();// <----------------------------playRound() function needs to be called for every loop
-        if(playerWin === 5) {
-            console.log(`You won the game with ${playerWin} points!`);
-        } else if(computerWin === 5) {
-            console.log(`You lost the game! Computer: ${computerWin} points, beats your ${playerWin} points!`);
-        }
-    }
-}
-
-*/
-
-/*function getPlayerChoice(e) {     <<<<<<-----This is what worked before, above. 
-    let playerSelection = (e.target.value);
-    playRound(playerSelection, computerPlay()); <<<<<<-----This is important to put back!
-}
-
-*/
+     }
